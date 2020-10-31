@@ -11,6 +11,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 
+import faker from 'faker';
 
 import api from './services/api';
 
@@ -29,11 +30,15 @@ export default function App() {
   
   async function handleAddRepository() {
       
+      const nameRepository = faker.commerce.product();
+      const nameTech1 = faker.commerce.product();
+      const nameTech2 = faker.commerce.product();
+
       const response = await api.post('repositories',
           {
-              title : `New Repository ${Date.now()}`,
-              url : "http://minhaurl3.com.br",
-              techs : "git, java"
+              title : `Repository ${nameRepository}`,
+              url : `http://${nameRepository}.com`,
+              techs : `${nameTech1}, ${nameTech2}`,
           }
       );
 
@@ -93,7 +98,7 @@ export default function App() {
                 // Remember to replace "1" below with repository ID: {`repository-likes-${repository.id}`}
                 testID={`repository-likes-${repository.id}`}
               >
-                {repository.likes} curtidas
+                {repository.likes} likes
               </Text>
             </View>
 
@@ -105,7 +110,7 @@ export default function App() {
                 // Remember to replace "1" below with repository ID: {`like-button-${repository.id}`}
                 testID={`like-button-${repository.id}`}
                 >
-                <Text style={styles.buttonText}>Curtir</Text>
+                <Text style={styles.buttonText}>Like</Text>
               </TouchableOpacity>
 
               <TouchableOpacity
