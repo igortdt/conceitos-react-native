@@ -97,18 +97,33 @@ export default function App() {
               </Text>
             </View>
 
-            <TouchableOpacity
-              style={styles.button}
-              onPress={() => handleLikeRepository(repository.id)}
-              // Remember to replace "1" below with repository ID: {`like-button-${repository.id}`}
-              testID={`like-button-${repository.id}`}
-            >
-              <Text style={styles.buttonText}>Curtir</Text>
-            </TouchableOpacity>
+            <View style={styles.viewHorizantal}>
+
+              <TouchableOpacity
+                style={styles.button}
+                onPress={() => handleLikeRepository(repository.id)}
+                // Remember to replace "1" below with repository ID: {`like-button-${repository.id}`}
+                testID={`like-button-${repository.id}`}
+                >
+                <Text style={styles.buttonText}>Curtir</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                style={styles.buttonRemove}
+                onPress={() => handleRemoveRepository(repository.id)}
+                >
+                <Text>Remove</Text>
+              </TouchableOpacity>
+            </View>
           </View>
 
         )}
         />
+
+          <TouchableOpacity activeOpacity={0.6} style={styles.buttonAdd} onPress={handleAddRepository}>
+               <Text>Add Repository</Text>
+          </TouchableOpacity>
+
       </SafeAreaView>
     </>
   );
@@ -163,4 +178,30 @@ const styles = StyleSheet.create({
     backgroundColor: "#7159c1",
     padding: 15,
   },
+
+
+  buttonAdd: {
+    backgroundColor: "#FFE607",
+    margin: 20,
+    height: 50,
+    borderRadius: 20,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+
+  buttonRemove: {
+      marginTop: 10,
+      backgroundColor: "#FF0808",      
+      padding: 15,
+  },
+
+  viewHorizantal: {
+    flex: 1,
+    flexDirection : "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    borderBottomWidth: 1,
+    marginBottom: 5
+}
+
 });
